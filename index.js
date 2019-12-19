@@ -88,14 +88,18 @@ export default class extends PureComponent {
         measureInputWidth: 0,
     };
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+
         this._root = null;
         this._curFocus = null;
         this._measureCallback = null;
         this._keyboardShow = false;
         this._inputInfoMap = {};
-        this._topOffset = this.props.topOffset;
+        this._topOffset = props.topOffset;
+      }
 
+    componentDidMount() {
         this._addListener();
         this._extendScrollViewFunc();
     }
