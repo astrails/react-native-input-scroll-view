@@ -133,7 +133,7 @@ export default class extends PureComponent {
                     <ScrollComponent ref={this._onRef}
                                      onFocus={this._onFocus}
                                      onBlur={this._onBlur} {...otherProps}>
-                        <View onStartShouldSetResponderCapture={isIOS ? this._onTouchStart : null}>
+                        <View style={ styles.inScrollComponent} onStartShouldSetResponderCapture={isIOS ? this._onTouchStart : null}>
                             {newChildren}
                             <View style={styles.hidden}
                                   pointerEvents="none">
@@ -453,7 +453,7 @@ function focus(targetTag) {
         // 在 react-native v0.57 版本中（也可能更早），UIManager.focus 不再有效
         TextInput.State && TextInput.State.focusTextInput(targetTag);
     } else {
-        const AndroidTextInput = UIManager.getViewManagerConfig 
+        const AndroidTextInput = UIManager.getViewManagerConfig
             && UIManager.getViewManagerConfig('AndroidTextInput')
             || UIManager.AndroidTextInput;
         UIManager.dispatchViewManagerCommand(
@@ -471,7 +471,7 @@ function getProps(targetNode) {
 
 const styles = StyleSheet.create({
     wrap: {
-        height: '100%',
+        flex: 1
     },
 
     hidden: {
@@ -480,4 +480,7 @@ const styles = StyleSheet.create({
         left: 0,
         opacity: 0,
     },
+    inScrollComponent: {
+        flexGrow: 1
+    }
 });
